@@ -10,13 +10,15 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "bootstrap.sh"
 
   # configure network ports
-  config.vm.network "forwarded_port", host: 9200, guest: 9200 # Elasticsearch
+  config.vm.network "forwarded_port", guest: 9200, host: 9200 # Elasticsearch
+
+  # configure provisioning
+  config.vm.synced_folder "./provision", "/vagrant"
 
   # configure provider
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 4096
     vb.cpus = 1
     vb.gui = false
-    vb.name = "elk"
   end
 end
