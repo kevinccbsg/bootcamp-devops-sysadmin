@@ -29,8 +29,9 @@ cd web-bootcamp-exercise-beer-api
 ## Installing dependencies
 npm i
 
+export DB_URL=mongodb://localhost:27017/beerapi
+
 ## load beer info
-DB_URL=mongodb://localhost:27017/beerapi npm run loadData
+npm run loadData
 
 npm start &
-

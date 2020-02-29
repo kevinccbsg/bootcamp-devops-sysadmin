@@ -1,0 +1,8 @@
+filebeat.prospectors:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/node-app.log
+    - /var/log/mongodb/mongod.log
+output.logstash:
+  hosts: ["localhost:5044"]

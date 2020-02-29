@@ -62,6 +62,16 @@ cp -R /vagrant/logstash/* /etc/logstash/conf.d/
 sudo systemctl enable logstash.service
 sudo systemctl start logstash.service
 
+echo "Install filebeat"
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$ELK_VERSION-amd64.deb
+sudo dpkg -i filebeat-$ELK_VERSION-amd64.deb
+
+# copy over configs
+cp -R /vagrant/filebeat/filebeat.yml /etc/filebeat/
+sudo systemctl enable filebeat.service
+sudo systemctl start filebeat.service
+
+echo "Setup permission for app logs"
 # Setup permission for app logs
 sudo touch /var/log/node-app.log
 sudo chgrp vagrant /var/log/node-app.log
