@@ -22,12 +22,10 @@ echo "smoke test node"
 node --version
 
 ## cloning repo
-git clone --branch log-file https://github.com/kevinccbsg/pwa-workbox-talk.git
+git clone --branch log-file https://github.com/kevinccbsg/web-bootcamp-exercise-beer-api.git
 
 cd pwa-workbox-talk
 
 ## Installing dependencies
 npm i
 
-## Executing app
-npm start &
