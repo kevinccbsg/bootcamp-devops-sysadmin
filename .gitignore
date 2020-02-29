@@ -56,4 +56,17 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/macos,windows
+### Vagrant ###
+# General
+.vagrant
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.log
+
+### Vagrant Patch ###
+*.box
+
+
+*.log
+
+# End of https://www.gitignore.io/api/macos,windows,vagrant
