@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
 
   # configure network ports
   config.vm.network "forwarded_port", guest: 9200, host: 9200 # Elasticsearch
+  config.vm.network "forwarded_port", guest: 5601, host: 5601 # Kibana
 
   # configure provisioning
   config.vm.synced_folder "./provision", "/vagrant"
