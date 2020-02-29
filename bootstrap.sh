@@ -67,6 +67,24 @@ sudo touch /var/log/node-app.log
 sudo chgrp vagrant /var/log/node-app.log
 sudo chown vagrant /var/log/node-app.log
 
+# Install mongodb
+echo "MongoDB install"
+wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+sudo apt-get install -y gnupg
+
+wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+
+## Running mongodb
+sudo systemctl daemon-reload
+sudo systemctl enable mongod
+sudo systemctl start mongod
+
+echo "Provision app"
 # Provision app
 cp /vagrant/app/bootstrap.sh /home/vagrant
 sudo chmod +x bootstrap.sh

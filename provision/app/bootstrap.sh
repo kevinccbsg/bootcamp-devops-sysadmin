@@ -24,8 +24,13 @@ node --version
 ## cloning repo
 git clone --branch log-file https://github.com/kevinccbsg/web-bootcamp-exercise-beer-api.git
 
-cd pwa-workbox-talk
+cd web-bootcamp-exercise-beer-api
 
 ## Installing dependencies
 npm i
+
+## load beer info
+DB_URL=mongodb://localhost:27017/beerapi npm run loadData
+
+npm start &
 
