@@ -52,4 +52,22 @@ sudo systemctl start kibana.service
 echo "Kibana installed"
 
 
+echo "Logstash install"
 
+# Install logstash
+sudo apt-get update && sudo apt-get install logstash
+
+# copy over configs
+cp -R /vagrant/logstash/* /etc/logstash/conf.d/
+sudo systemctl enable logstash.service
+sudo systemctl start logstash.service
+
+# Setup permission for app logs
+sudo touch /var/log/node-app.log
+sudo chgrp vagrant /var/log/node-app.log
+sudo chown vagrant /var/log/node-app.log
+
+# Provision app
+cp /vagrant/app/bootstrap.sh /home/vagrant
+sudo chmod +x bootstrap.sh
+sh ./bootstrap.sh
