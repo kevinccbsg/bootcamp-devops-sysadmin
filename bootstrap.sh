@@ -4,6 +4,39 @@ echo "Configure script"
 
 ELK_VERSION="6.2.4"
 
+# Disk management
+
+## We define 2 disks in the vagrant file
+
+## Partition sde disk
+(
+echo n # Add a new partition
+echo p # Primary partition
+echo 1 # Partition number
+echo   # First sector (Accept default: 1)
+echo   # Last sector (Accept default: varies)
+echo w # Write changes
+) | sudo fdisk /dev/sde
+
+## Partition sdd disk
+(
+echo n # Add a new partition
+echo p # Primary partition
+echo 1 # Partition number
+echo   # First sector (Accept default: 1)
+echo   # Last sector (Accept default: varies)
+echo w # Write changes
+) | sudo fdisk /dev/sdd
+
+## adding to fstab
+echo "/dev/sde1  /var  ext4  defaults  0 0" >> /etc/fstab
+echo "/dev/sdd1  /home  ext4  defaults  0 0" >> /etc/fstab
+
+cat /etc/fstab
+
+# We mount each partition we have setup in fstab
+sudo mount -a
+
 # Install Java
 
 ## update apt
