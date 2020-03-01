@@ -18,6 +18,8 @@ For this example, we decided to use Vagrant and it was developed and tested in a
 vagrant up
 ```
 
+![](files/vagrant-script-running.gif)
+
 After this command executes each step, you will have access to these endpoints. (We want in the future to unify this in an Nginx server as we explain in the  [future steps section](#future-steps-section) at the bottom of this document)
 
 These routes are
@@ -28,7 +30,13 @@ These routes are
 
 If you want to check the logs you have to go to Kibana and create an Index as it is shown in this video.
 
-![](files/Demo-Video.png)
+**Kibana configuration**
+
+![](files/demo-1.gif)
+
+**POST to the API log in Kibana**
+
+![](files/demo-2.gif)
 
 ---
 
