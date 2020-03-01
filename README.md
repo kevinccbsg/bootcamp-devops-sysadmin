@@ -18,7 +18,7 @@ For this example, we decided to use Vagrant and it was developed and tested in a
 vagrant up
 ```
 
-After this command executes each step, you will have access to these endpoints. (We want in the future to unify this in an Nginx server as we explain in the future steps section)
+After this command executes each step, you will have access to these endpoints. (We want in the future to unify this in an Nginx server as we explain in the  [future steps section](#future-steps-section) at the bottom of this document)
 
 These routes are
 
@@ -272,3 +272,21 @@ Environment=NODE_ENV=production PORT=3000 DB_URL=mongodb://localhost:27017/beera
 [Install]
 WantedBy=multi-user.target
 ```
+
+## future steps section
+
+There are still some improvements in the backlog as:
+
+1. Secure connection from the API to the MongoDB database. We want to use this script but because times fly we couldn't.
+
+    ```
+    mongo admin -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD --eval "db.getSiblingDB('$MONGO_DB_APP_DATABASE').createUser({user: '$MONGO_DB_APP_USERNAME', pwd: '$MONGO_DB_APP_PASSWORD', roles: [{role: 'readWrite', db: '$MONGO_DB_APP_DATABASE'}]});"
+    ```
+    And then send it as a ENV variable to the provission script.
+
+2. Add Nginx as a proxy to not expose all the different ports. Using it as a reverse proxy. We want to do something like this https://github.com/kevinccbsg/bootcamp-mobile-node/blob/master/nginx.conf for Kibana, Elastichsearch and the API.
+3. Improve disk management. We have a problem when we create the partition as our node app was not working properly. Although We add the right disk management commands in the bootstrap file, we couldn't add it as it didn't allow us to use the API.
+4. Play with Logstash filter and Kibana index to optimize the log results.
+
+These points weren't prioritized as it covers topics not related to the course, Nodejs app management, elk improvements, and MongoDB config.
+
