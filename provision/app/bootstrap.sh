@@ -3,23 +3,20 @@
 echo "Configure app"
 
 ## Installing git
+sudo apt-get update
 sudo apt install -y git-all
 
 echo "smoke test git"
 git --version
 
-## Installing nvm
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
-
-cat ~/.bashrc
-## Reload source env
-. ~/.bashrc
 
 ## Installing node
-nvm install node
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 echo "smoke test node"
 node --version
+
 
 ## cloning repo
 git clone --branch log-file https://github.com/kevinccbsg/web-bootcamp-exercise-beer-api.git
@@ -34,4 +31,6 @@ export DB_URL=mongodb://localhost:27017/beerapi
 ## load beer info
 npm run loadData
 
-npm start &
+# run app with systemctl
+sudo systemctl enable nodeserver.service
+sudo systemctl start nodeserver.service

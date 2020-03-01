@@ -69,4 +69,6 @@ $RECYCLE.BIN/
 
 *.log
 
+*.vmdk
+
 # End of https://www.gitignore.io/api/macos,windows,vagrant

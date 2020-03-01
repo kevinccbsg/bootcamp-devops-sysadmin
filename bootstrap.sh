@@ -110,7 +110,7 @@ sudo touch /var/log/node-app.log
 sudo chgrp vagrant /var/log/node-app.log
 sudo chown vagrant /var/log/node-app.log
 
-# Install mongodb
+# # Install mongodb
 echo "MongoDB install"
 wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
 sudo apt-get install -y gnupg
@@ -130,5 +130,6 @@ sudo systemctl start mongod
 echo "Provision app"
 # Provision app
 cp /vagrant/app/bootstrap.sh /home/vagrant
+cp /vagrant/app/nodeserver.service /etc/systemd/system/
 sudo chmod +x bootstrap.sh
-sh ./bootstrap.sh
+sudo su -c ./bootstrap.sh - vagrant

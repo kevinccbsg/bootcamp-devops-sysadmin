@@ -1,0 +1,21 @@
+[Unit]
+Description=Beerflix API
+Requires=After=mongod.service       # Requires the mysql service to run first
+
+[Service]
+ExecStart=/usr/bin/node /home/vagrant/web-bootcamp-exercise-beer-api/bin/www
+# Required on some systems
+WorkingDirectory=/home/vagrant/web-bootcamp-exercise-beer-api
+Restart=always
+# Restart service after 10 seconds if node service crashes
+RestartSec=15
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejs-example
+#User=<alternate user>
+#Group=<alternate group>
+Environment=NODE_ENV=production PORT=3000 DB_URL=mongodb://localhost:27017/beerapi
+
+[Install]
+WantedBy=multi-user.target
