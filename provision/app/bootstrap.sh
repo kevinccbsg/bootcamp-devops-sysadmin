@@ -18,7 +18,7 @@ echo "smoke test node"
 node --version
 
 
-## cloning repo
+## cloning repo
 git clone --branch log-file https://github.com/kevinccbsg/web-bootcamp-exercise-beer-api.git
 
 cd web-bootcamp-exercise-beer-api
