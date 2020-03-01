@@ -8,7 +8,7 @@ ELK_VERSION="6.2.4"
 
 ## We define 2 disks in the vagrant file
 
-## Partition sde disk
+## Partition sdc disk
 (
 echo n # Add a new partition
 echo p # Primary partition
@@ -16,8 +16,8 @@ echo 1 # Partition number
 echo   # First sector (Accept default: 1)
 echo   # Last sector (Accept default: varies)
 echo w # Write changes
-) | sudo fdisk /dev/sde
-
+) | sudo fdisk /dev/sdc
+sudo mkfs.ext4 /dev/sdc1
 ## Partition sdd disk
 (
 echo n # Add a new partition
@@ -27,15 +27,12 @@ echo   # First sector (Accept default: 1)
 echo   # Last sector (Accept default: varies)
 echo w # Write changes
 ) | sudo fdisk /dev/sdd
-
+sudo mkfs.ext4 /dev/sdd1
 ## adding to fstab
-echo "/dev/sde1  /var  ext4  defaults  0 0" >> /etc/fstab
-echo "/dev/sdd1  /home  ext4  defaults  0 0" >> /etc/fstab
+# echo "/dev/sdc1  /var/lib/elasticsearch  ext4  defaults  0 0" >> /etc/fstab
+# echo "/dev/sdd1  /var/lib/mongodb  ext4  defaults  0 0" >> /etc/fstab
 
-cat /etc/fstab
-
-# We mount each partition we have setup in fstab
-sudo mount -a
+# cat /etc/fstab
 
 # Install Java
 
@@ -133,3 +130,7 @@ cp /vagrant/app/bootstrap.sh /home/vagrant
 cp /vagrant/app/nodeserver.service /etc/systemd/system/
 sudo chmod +x bootstrap.sh
 sudo su -c ./bootstrap.sh - vagrant
+
+
+#We mount each partition we have setup in fstab
+# sudo mount -a

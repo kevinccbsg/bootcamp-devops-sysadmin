@@ -25,7 +25,6 @@ Vagrant.configure("2") do |config|
     vb.gui = false
     file_to_disk1 = "extradisk1.vmdk"
     file_to_disk2 = "extradisk2.vmdk"
-    file_to_disk3 = "extradisk3.vmdk"
     unless File.exist?(file_to_disk1)
         vb.customize [ "createmedium", "disk", "--filename", "extradisk1.vmdk", "--format", "vmdk", "--size", 1024 * 1 ]
     end
